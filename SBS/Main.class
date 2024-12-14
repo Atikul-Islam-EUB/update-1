@@ -1,0 +1,28 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Bank bank = new Bank();
+        Scanner scanner = new Scanner(System.in);
+
+        // Adding accounts
+        bank.addAccount(new SavingsAccount("230321001", "Md. Atikul Islam", 1000.0));
+        bank.addAccount(new CheckingAccount("230321002", "John Doe", 500.0));
+
+        // User interaction
+        System.out.print("Enter account number: ");
+        String accountNumber = scanner.nextLine();
+
+        Account account = bank.findAccountByNumber(accountNumber);
+        if (account != null) {
+            System.out.println("--- Account Details ---");
+            System.out.println("Account Number: " + account.getAccountNumber());
+            System.out.println("Owner Name: " + account.getOwnerName());
+            System.out.println("Current Balance: " + account.getBalance());
+        } else {
+            System.out.println("Account with number " + accountNumber + " not found.");
+        }
+
+        scanner.close();
+    }
+}
